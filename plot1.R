@@ -1,13 +1,8 @@
-library(data.table)
-# Data file is assumed to be in the workspace already.
-dataFile <- "household_power_consumption.txt"
+source("get_consumption_data.R")
 
-DT <- fread(
-    paste("grep ^[12]/2/2007", dataFile),
-    na.strings = c("?", "")
-)
-
-setnames(DT, colnames(fread(dataFile, nrows=0)))
+#caching mechanism for large house hold power consumption data
+cacher <- cache_household_power_consumption()
+DT <- get_household_power_consumption(cacher)
 
 png("plot1.png", width = 480, height = 480)
 with(DT, hist(Global_active_power, col="red", 
