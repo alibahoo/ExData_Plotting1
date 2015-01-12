@@ -1,6 +1,7 @@
 source("get_consumption_data.R")
 
-#caching mechanism for large house hold power consumption data
+# caching mechanism for large house hold power consumption data
+# comment the line below after running once 
 cacher <- cache_household_power_consumption()
 DT <- get_household_power_consumption(cacher)
 
